@@ -36,14 +36,11 @@ jobs:
 
       - name: Build Next.js app
         run: |
-            ls -la json
-            cat json/_projects.json
             npm run build
 
       - name: SSH Deploy
         uses: appleboy/ssh-action@master
         with:
-          include-hidden-files: true
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
