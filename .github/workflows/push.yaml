@@ -22,10 +22,10 @@ jobs:
 
       - name: "Creating .env file"
         run: |
-          echo "NEXT_PUBLIC_APP_NAME=${{ secrets.NEXT_PUBLIC_APP_NAME }}" >> .env
-          echo "NEXT_PUBLIC_RECAPTCHA_SITE_KEY=${{ secrets.NEXT_PUBLIC_RECAPTCHA_SITE_KEY }}" >> .env
-          echo "NEXT_PUBLIC_RECAPTCHA_SECRET_KEY=${{ secrets.NEXT_PUBLIC_RECAPTCHA_SECRET_KEY }}" >> .env
-          echo "NEXT_PUBLIC_GOOGLE_CLOUD_KEY=${{ secrets.NEXT_PUBLIC_GOOGLE_CLOUD_KEY }}" >> .env
+          echo "NEXT_PUBLIC_APP_NAME=${{ secrets.APP_NAME }}" >> .env
+          echo "NEXT_PUBLIC_RECAPTCHA_SITE_KEY=${{ secrets.RECAPTCHA_SITE_KEY }}" >> .env
+          echo "NEXT_PUBLIC_RECAPTCHA_SECRET_KEY=${{ secrets.RECAPTCHA_SECRET_KEY }}" >> .env
+          echo "NEXT_PUBLIC_GOOGLE_CLOUD_KEY=${{ secrets.GOOGLE_CLOUD_KEY }}" >> .env
           echo "SMTP_HOST=${{ secrets.SMTP_HOST }}" >> .env
           echo "SMTP_PORT=${{ secrets.SMTP_PORT }}" >> .env
           echo "SMTP_USERNAME=${{ secrets.SMTP_USERNAME }}" >> .env
