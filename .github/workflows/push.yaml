@@ -18,7 +18,7 @@ jobs:
           mkdir -p json
           curl -o json/_about.json https://gist.githubusercontent.com/fvckdecops/7b7b1889fe508a11e08c56813be2b07c/raw/06d43369ccbddda62da6eaf3292f432462e14e8b/_about.json
           curl -o json/_experiences.json https://gist.githubusercontent.com/fvckdecops/e703aeaadfaf639990cc3c5325db87ad/raw/5a743d8571caf9cc1f82ae7245f8b1c3914d597e/_experiences.json
-          curl -o json/_projects.json https://gist.github.com/fvckdecops/bb258b8af50ba02ab10bd1852273467f/raw/beb27cd9fcfc539e4271dd852f2ac932563dedc1/_projects.json
+          curl -o json/_projects.json https://gist.githubusercontent.com/fvckdecops/bb258b8af50ba02ab10bd1852273467f/raw/beb27cd9fcfc539e4271dd852f2ac932563dedc1/_projects.json
 
       - name: "Creating .env file"
         run: |
