@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "prebuild": "mkdir -p json && curl -o json/_projects.json $PROJECT_DATA && curl -o json/_experiences.json $EXPERIENCE_DATA && curl -o json/_about.json $ABOUT_DATA",
+    "download-file": "mkdir -p json && curl -o json/_projects.json $PROJECT_DATA && curl -o json/_experiences.json $EXPERIENCE_DATA && curl -o json/_about.json $ABOUT_DATA",
     "dev": "next dev --turbopack -p 1337",
     "build": "next build",
     "start": "next start -p 1337",
