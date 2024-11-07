@@ -21,9 +21,8 @@ jobs:
 
       - name: SSH Deploy
         uses: appleboy/ssh-action@master
-        env:
-            CI: false
         with:
+          include-hidden-files: true
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
