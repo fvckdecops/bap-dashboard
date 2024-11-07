@@ -36,7 +36,8 @@ jobs:
 
       - name: Build Next.js app
         run: |
-            ls -la
+            ls -la json
+            cat json/_projects.json
             npm run build
 
       - name: SSH Deploy
