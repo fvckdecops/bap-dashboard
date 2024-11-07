@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/layouts/header";
 import { cn } from "@/components/Helpers";
 import { Toaster } from "sonner";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const DosisFonts = Dosis({
   subsets: ['latin'],
@@ -31,6 +32,7 @@ export default function RootLayout({
         </header>
         <div>{children}</div>
         <Toaster />
+        <SpeedInsights />
       </body>
     </html>
   );
