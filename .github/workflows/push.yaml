@@ -47,6 +47,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd ~/bap-dashboard/
+            ll
+            id
             git pull
             npm install
             npm run build
