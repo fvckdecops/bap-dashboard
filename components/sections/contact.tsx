@@ -185,7 +185,7 @@ export default function ContactSection(): React.JSX.Element {
                     <form.Subscribe
                         selector={(state) => [state.canSubmit, state.isSubmitting]}
                         children={([canSubmit, isSubmitting]) => (
-                                <div className="flex justify-between mb-4 items-center">
+                                <div className="flex flex-col gap-4 lg:justify-between mb-4 items-center">
                                     <ReCAPTCHA
                                         onChange={(token) => getToken(token)}
                                         sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}

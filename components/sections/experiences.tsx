@@ -11,7 +11,7 @@ export default function ExperienceSection(): React.JSX.Element {
                         direction="up"
                         fraction={0}
                         triggerOnce
-                        className="block pt-[20px] pb-[100px] xl:py-0"
+                        className="block pt-[20px] pb-[20px] md:pb-[100px] xl:py-0"
                     >
                         <div className="flex justify-center items-center mb-4 pt-8">
                             <div className="relative flex justify-center items-center">
@@ -19,7 +19,7 @@ export default function ExperienceSection(): React.JSX.Element {
                                 <span className="absolute -bottom-1 w-20 h-1 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full"></span>
                             </div>
                         </div>
-                        <div className="flex flex-col grid-cols-9 p-2 mx-auto md:grid pb-0">
+                        <div className="flex flex-col grid-cols-9 p-2 mx-auto md:grid pb-28 md:pb-0">
                             {
                                 data.map((experience, ind) => {
                                         return (
