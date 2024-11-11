@@ -27,6 +27,8 @@ export default function RootLayout({
         DosisFonts.className,
         "w-screen h-screen pb-4"
       )}>
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDQJ4L4"
+        height="0" width="0" style={{display: 'none', visibility: 'hidden'}}></iframe></noscript>
         <header className="w-screen mb-4">
           <Header />
         </header>
