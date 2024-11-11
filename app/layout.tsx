@@ -25,6 +25,10 @@ export default function RootLayout({
 
   return (
     <html lang="en" className="m-0 p-0" suppressHydrationWarning>
+      <GoogleTagManager 
+        gtmId={process.env.NEXT_PUBLIC_GA_ID!}
+        gtmScriptUrl={"https://www.googletagmanager.com/ns.html?id="+ process.env.NEXT_PUBLIC_GA_ID}
+      />
       <body className={cn(
         DosisFonts.className,
         "w-screen h-screen pb-4"
@@ -35,10 +39,6 @@ export default function RootLayout({
         <div>{children}</div>
         <Toaster />
         <SpeedInsights />
-        <GoogleTagManager 
-          gtmId={process.env.NEXT_PUBLIC_GA_ID!}
-          gtmScriptUrl={"https://www.googletagmanager.com/ns.html?id="+ process.env.NEXT_PUBLIC_GA_ID}
-        />
       </body>
     </html>
   );
