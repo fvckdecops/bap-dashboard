@@ -33,6 +33,7 @@ jobs:
           echo "ABOUT_DATA=${{ secrets.ABOUT_DATA }}" >> .env
           echo "PROJECT_DATA=${{ secrets.PROJECT_DATA }}" >> .env
           echo "EXPERIENCE_DATA=${{ secrets.EXPERIENCE_DATA }}" >> .env
+          echo "NEXT_PUBLIC_GA_ID=${{ secretes.NEXT_PUBLIC_GA_ID }}" >> .env
 
       - name: Install dependencies
         run: npm install
