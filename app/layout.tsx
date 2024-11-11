@@ -27,7 +27,6 @@ export default function RootLayout({
     <html lang="en" className="m-0 p-0" suppressHydrationWarning>
       <GoogleTagManager 
         gtmId={process.env.NEXT_PUBLIC_GA_ID!}
-        gtmScriptUrl={"https://www.googletagmanager.com/ns.html?id="+ process.env.NEXT_PUBLIC_GA_ID}
       />
       <body className={cn(
         DosisFonts.className,
