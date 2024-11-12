@@ -61,6 +61,6 @@ jobs:
             rm -f json/_experiences.json && curl -o json/_experiences.json ${{ secrets.EXPERIENCE_DATA }}
             rm -f json/_projects.json && curl -o json/_projects.json ${{ secrets.PROJECT_DATA }}
             rm -f .env && curl -o .env ${{ secrets.ENV_DATA }}
-            docker login docker.io -u ${{ secrets.DOCKERHUB_USERNAME }} -p secrets.DOCKERHUB_PASSWORD
+            docker login docker.io -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_NAME }}:latest
-            docker compose down && docker compose start && docker logout
+            docker-compose down && docker-compose start && docker logout
