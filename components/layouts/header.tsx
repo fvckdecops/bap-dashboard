@@ -116,7 +116,13 @@ export default function Header(): React.JSX.Element {
                             "text-4xl xl:text-6xl bg-clip-text text-transparent bg-gradient-to-r",
                             isScrolled ? 'from-slate-600 to-slate-800' : 'from-slate-200 to-slate-400'
                         )
-                    } href="/">{ initialsName(process.env.NEXT_PUBLIC_APP_NAME!) }</Link>
+                    } href="/">
+                        <Image
+                            src={require('@/public/bap_logo.png')}
+                            className="max-w-[120px]"
+                            alt={process.env.NEXT_PUBLIC_APP_NAME!}
+                        />
+                    </Link>
                 </div>
                 <div className="navbar items-center gap-4 hidden md:flex">
                     {
