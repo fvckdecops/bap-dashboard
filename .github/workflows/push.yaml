@@ -16,32 +16,32 @@ jobs:
       - name: "Download required files"
         run: |
           mkdir -p json
-          curl -o json/_about.json ${{ secrets.ABOUT_DATA }}
-          curl -o json/_experiences.json ${{ secrets.EXPERIENCE_DATA }}
-          curl -o json/_projects.json ${{ secrets.PROJECT_DATA }}
-
-      - name: "Creating .env file"
-        run: |
-          echo "NEXT_PUBLIC_APP_NAME=${{ secrets.APP_NAME }}" >> .env
-          echo "NEXT_PUBLIC_RECAPTCHA_SITE_KEY=${{ secrets.RECAPTCHA_SITE_KEY }}" >> .env
-          echo "NEXT_PUBLIC_RECAPTCHA_SECRET_KEY=${{ secrets.RECAPTCHA_SECRET_KEY }}" >> .env
-          echo "NEXT_PUBLIC_GOOGLE_CLOUD_KEY=${{ secrets.GOOGLE_CLOUD_KEY }}" >> .env
-          echo "SMTP_HOST=${{ secrets.SMTP_HOST }}" >> .env
-          echo "SMTP_PORT=${{ secrets.SMTP_PORT }}" >> .env
-          echo "SMTP_USERNAME=${{ secrets.SMTP_USERNAME }}" >> .env
-          echo "SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }}" >> .env
-          echo "ABOUT_DATA=${{ secrets.ABOUT_DATA }}" >> .env
-          echo "PROJECT_DATA=${{ secrets.PROJECT_DATA }}" >> .env
-          echo "EXPERIENCE_DATA=${{ secrets.EXPERIENCE_DATA }}" >> .env
-          echo "NEXT_PUBLIC_GA_ID=${{ secrets.NEXT_PUBLIC_GA_ID }}" >> .env
-          echo "NEXT_PUBLIC_APP_DESCRIPTION=${{ secrets.APP_DESCRIPTION }}" >> .env
+          rm -f json/_about.json && curl -o json/_about.json ${{ secrets.ABOUT_DATA }}
+          rm -f json/_experience.json && curl -o json/_experience.json ${{ secrets.EXPERIENCE_DATA }}
+          rm -f json/_projects.json && curl -o json/_projects.json ${{ secrets.PROJECT_DATA }}
+          rm -f .env && curl -o .env ${{ secrets.ENV_DATA }}
 
       - name: Install dependencies
         run: npm install
 
       - name: Build Next.js app
-        run: |
+        run: 
             npm run build
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with: 
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: Setup Buildx Docker
+        uses: docker/setup-buildx-action@v3
+        
+      - name: Build and Push to Docker
+        uses: docker/build-push-action@v6
+        with: 
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_NAME }}:latest
 
       - name: SSH Deploy
         uses: appleboy/ssh-action@master
@@ -53,8 +53,13 @@ jobs:
           script: |
             export NVM_DIR=~/.nvm
             source ~/.nvm/nvm.sh
-            cd ~/bap-dashboard/
-            git pull
-            npm install
-            npm run build
-            pm2 restart 0
+            mkdir -p ${{ secrets.DOCKERHUB_NAME }}
+            cd ~/${{ secrets.DOCKERHUB_NAME }}/
+            mkdir -p json
+            rm -f json/_about.json && curl -o json/_about.json ${{ secrets.ABOUT_DATA }}
+            rm -f json/_experience.json && curl -o json/_experience.json ${{ secrets.EXPERIENCE_DATA }}
+            rm -f json/_projects.json && curl -o json/_projects.json ${{ secrets.PROJECT_DATA }}
+            rm -f .env && curl -o .env ${{ secrets.ENV_DATA }}
+            docker login docker.io -u ${{ secrets.DOCKERHUB_USERNAME }} -p secrets.DOCKERHUB_PASSWORD
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_NAME }}:latest
+            docker compose down && docker compose start && docker logout
