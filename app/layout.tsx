@@ -4,7 +4,6 @@ import "./globals.css";
 import Header from "@/components/layouts/header";
 import { cn } from "@/components/Helpers";
 import { Toaster } from "sonner";
-import { SpeedInsights } from "@vercel/speed-insights/next"
 import { GoogleTagManager } from '@next/third-parties/google'
 
 const DosisFonts = Dosis({
@@ -40,7 +39,6 @@ export default function RootLayout({
         </header>
         <div>{children}</div>
         <Toaster />
-        <SpeedInsights />
       </body>
     </html>
   );

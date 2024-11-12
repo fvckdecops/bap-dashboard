@@ -5,7 +5,8 @@ services:
     image: fvckdecops/bap_dashboard
     restart: always
     ports:
-      - 1337:1337
+      - 80:1337
+      - 443:1337
     volumes:
       - ./json:/json
     environment:
