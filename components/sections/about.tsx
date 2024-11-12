@@ -124,7 +124,7 @@ export default function AboutSection(): React.JSX.Element {
 				fraction={1}
 				triggerOnce
 			>
-				<section className="pb-8 px-4 xl:px-16 py-6 wave-clip-path h-[400px]">
+				<section className="pb-8 px-4 xl:px-16 py-6 wave-clip-path h-auto md:h-[400px]">
 					<div className="flex justify-center items-center mb-8">
 						<div className="relative flex justify-center items-center">
 							<h3 className="text-xl md:text-2xl font-bold">My Skills</h3>
