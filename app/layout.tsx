@@ -14,7 +14,9 @@ const DosisFonts = Dosis({
 
 export const metadata: Metadata = {
   title: process.env.NEXT_PUBLIC_APP_NAME,
-  description: process.env.NEXT_PUBLIC_APP_DESCRIPTION
+  description: process.env.NEXT_PUBLIC_APP_DESCRIPTION,
+  authors: { url: "https://adjipratama.web.id", name: process.env.NEXT_PUBLIC_APP_NAME },
+  keywords: ["Bagas Adji Pratama", "Bagas Adji", "Pratama", "Web Developer", "Web Dev", "Full-stack Developer", "Fullstack", "Developer", "Frontend Developer", "Backend Developer"]
 };
 
 export default function RootLayout({
