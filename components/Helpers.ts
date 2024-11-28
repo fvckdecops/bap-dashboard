@@ -7,7 +7,7 @@ export const cn = (...inputs: any[]): string => {
     return twMerge(clsx(inputs))
 }
 
-export const verifyToken = async (token: string|null, action: string|null = null, referer: string): Promise<any> => {
+export const verifyToken = async (token: string|null, action: string|null = null, referer?: string): Promise<any> => {
     try {
         const params = {
             event: {
@@ -21,7 +21,7 @@ export const verifyToken = async (token: string|null, action: string|null = null
             method: "POST",
             body: JSON.stringify(params),
             headers: {
-                Referer: referer
+                Referer: referer!
             }
         }
     
