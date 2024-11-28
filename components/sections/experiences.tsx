@@ -1,9 +1,19 @@
-import React from "react";
+"use client"
+
+import React, { useMemo } from "react";
 import { Fade } from "react-awesome-reveal";
 import { cn, randNumber } from "../Helpers";
-import data from '@/json/_experiences.json'
+import data from '@/json/_experiences.json';
+
+interface ExperienceTypes {
+    [K: string]: string|null
+}
 
 export default function ExperienceSection(): React.JSX.Element {
+    const experiences: ExperienceTypes[] = useMemo(() => {
+        return data
+    }, [data])
+
     return (
             <>
                 <section className="section-wrapper wave-clip-up-down bg-gray-200 h-[3000px]lg:h-[970px]" id="experiences">
@@ -21,7 +31,7 @@ export default function ExperienceSection(): React.JSX.Element {
                         </div>
                         <div className="flex flex-col grid-cols-9 p-2 mx-auto md:grid pb-28 md:pb-0">
                             {
-                                data.map((experience, ind) => {
+                                experiences.map((experience, ind) => {
                                         return (
                                             <div className={cn("flex md:contents", ((ind % 2 === 0) && "flex-row-reverse"))} key={randNumber()}>
                                                 {

@@ -10,7 +10,6 @@ import { Button } from "../ui/button";
 import { FaPaperPlane, FaSpinner } from "react-icons/fa6";
 import ReCAPTCHA from "react-google-recaptcha";
 import { toast } from "sonner";
-import { verifyToken } from "../Helpers";
 
 function FieldInfo({ field }: { field: FieldApi<any, any, any, any> }) {
     return (
@@ -46,10 +45,21 @@ export default function ContactSection(): React.JSX.Element {
             message: ''
         },
         async onSubmit({ value }) {
-            if(await verifyToken(token)) {
-                console.log('success', value)
-            } else {
-                toast.warning("Invalid action.")
+            const body = {...value, token};
+
+            const req = await fetch('/api/mail', {
+                method: 'POST',
+                body: JSON.stringify(body),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            const response = await req.json()
+
+            if(response.code === 0) {
+                toast.success(response.message)
+                form.reset()
             }
         }
     })
